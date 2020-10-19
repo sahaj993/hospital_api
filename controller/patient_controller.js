@@ -31,8 +31,30 @@ module.exports.createReport = function(req, res) {
                 message: 'Patient not found'
             })
         }
-        console.log(req.params.id);
-        console.log(req.user);
+        console.log(req.user.name);
+        Report.create({
+            doctor: req.user.name,
+            patient: patient.name,
+            status: req.body.status,
+            quarantine: req.body.quarantine
+        }, function(err, report){
+            if (err){
+                console.log(err);
+                return res.json(402, {
+                    message: 'Error in creating the report'
+                })
+            }else{
+                return res.json(200, {
+                    message: 'Patient report successfully created',
+                    info: {
+                        doctor: report.doctor,
+                        patient: patient.name,
+                        status: report.status,
+                        quarantine: report.quarantine
+                    }
+                })
+            }
+        })
     })
 }
 

@@ -26,7 +26,7 @@ passport.serializeUser(function(user, done){
 
 
 passport.deserializeUser(function(id, done){
-    User.findById(id, function(err, user){
+    Doctor.findById(id, function(err, user){
         if (err){
             console.log('Error in finding user --> Passport');
             return done(err);            

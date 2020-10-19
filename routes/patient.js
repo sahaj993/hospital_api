@@ -4,8 +4,7 @@ const router = express.Router();
 
 const patientController = require('../controller/patient_controller');
 
-router.post('/register', passport.authenticate('jwt', {session: false}), patientController.create);
-// router.post('/register', patientController.create);
-router.post('/:id/create_report',passport.authenticate('jwt', {session: false}), patientController.createReport);
+router.post('/register', passport.authenticate('jwt', {session: true}), patientController.create);
+router.post('/:id/create_report',  patientController.createReport);
 
 module.exports = router;
