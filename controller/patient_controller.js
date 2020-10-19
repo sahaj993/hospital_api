@@ -1,4 +1,5 @@
 const Patient = require('../models/patient');
+const Report = require('../models/report')
 const jwt = require('jsonwebtoken');
 
 module.exports.create = function(req, res){
@@ -20,6 +21,18 @@ module.exports.create = function(req, res){
                 }
             })
         }
+    })
+}
+
+module.exports.createReport = function(req, res) {
+    Patient.findById(req.params.id, function(err, patient){
+        if (!patient){
+            return res.json(402, {
+                message: 'Patient not found'
+            })
+        }
+        console.log(req.params.id);
+        console.log(req.user);
     })
 }
 

@@ -12,7 +12,11 @@ module.exports.create = function(req, res){
                     });
                 }else{
                     return res.json(200, {
-                        message: "Doctor Signed In"
+                        message: "Doctor Signed Up",
+                        info: {
+                            name: doc.name,
+                            email: doc.email
+                        }
                     })
                 }
 
@@ -32,7 +36,7 @@ module.exports.createSession = async function(req, res){
         return res.json(200, {
             message: "Sign In successful",
             data: {
-                token: jwt.sign(doc.toJSON(), 'hospital', {expiresIn: '10000'})
+                token: jwt.sign(doc.toJSON(), 'hospital', {expiresIn: '100000'})
             }
         })
     }catch(err){
