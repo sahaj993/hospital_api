@@ -31,7 +31,6 @@ module.exports.createReport = function(req, res) {
                 message: 'Patient not found'
             })
         }
-        console.log(req.user.name);
         Report.create({
             doctor: req.user.name,
             patient: patient.name,
@@ -55,6 +54,25 @@ module.exports.createReport = function(req, res) {
                 })
             }
         })
+    })
+}
+
+module.exports.getReport = function(req, res){
+    Patient.findById(req.params.id,function(err, patient){
+        if (err){
+            return res.json(402, {
+                message: 'Patient ID not found'
+            })
+        }
+        Report.find({patient: patient.name}, function(err, reports){
+            if (err){console.log(err); return;}
+            console.log(reports.length);
+            return res.json(200, {
+                info: {
+                    reports: reports
+                }
+            })
+        }).sort({datefield:-1})
     })
 }
 
