@@ -6,9 +6,9 @@ module.exports.create = function(req, res){
         if (!doc){
             Doctor.create(req.body, function(err, doc){
                 if (err){
-                    console.log("Error in creating the doctor"); 
+                    console.log("Error in creating the doctor",err); 
                     return res.json(409, {
-                        message: 'Error in creating user'
+                        message: 'Error in creating doctor'
                     });
                 }else{
                     return res.json(200, {
@@ -20,6 +20,10 @@ module.exports.create = function(req, res){
                     })
                 }
 
+            })
+        }else{
+            return res.json(409, {
+                message: 'Doctor already exists'
             })
         }
     })

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports.create = function(req, res){
     Patient.findOne({phone: req.body.phone}, function(err, patient){
         if (!patient){
-            Patient.create(req.body, function(err, user){
+            Patient.create(req.body, function(err, patient){
                 if (err){ 
                     return res.json(409, {
                         message: 'Error in creating user'
@@ -14,11 +14,15 @@ module.exports.create = function(req, res){
                     return res.json(200, {
                         message: "Patient Registered",
                         info: {
-                            name: user.name,
-                            phone: user.phone
+                            name: patient.name,
+                            phone: patient.phone
                         }
                     })
                 }
+            })
+        }else{
+            return res.json(409, {
+                message: 'Patient already exists'
             })
         }
     })
@@ -66,7 +70,6 @@ module.exports.getReport = function(req, res){
         }
         Report.find({patient: patient.name}, function(err, reports){
             if (err){console.log(err); return;}
-            console.log(reports.length);
             return res.json(200, {
                 info: {
                     reports: reports
