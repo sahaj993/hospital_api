@@ -7,7 +7,9 @@ This has two types of users
 * Patients
 
 # Folder Structure
-        |-- config
+        |-- config        
+        |-- |-- mongoose.js 
+        |-- |-- passport-jwt-strategy.js 
         |-- controller
         |-- |-- doctor_controller.js 
         |-- |-- home_controller.js 
@@ -27,7 +29,16 @@ This has two types of users
         |-- index.js 
         |-- package-lock.json 
         |-- package.json
-        
+
+# Setup the project on Local System
+* Clone the repository <br>
+`git clone https://github.com/sahaj993/hospital_api.git`<br>
+* Install the dependances<br>
+`npm install`<br>
+* Start the server<br>
+`npm start`
+* Follow the following routes
+                
 # Routes
 `localhost:8000`<br> Start the server<br><br>
 <img src="https://user-images.githubusercontent.com/51825888/96627048-f03e4180-132d-11eb-87e3-e63147ccdf2d.jpg" height="400"></img><br>
